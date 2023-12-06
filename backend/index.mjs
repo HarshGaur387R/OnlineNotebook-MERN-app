@@ -2,18 +2,22 @@ import express from 'express';
 import { connectToDatabase } from './db.mjs';
 import authRoute from './routes/auth.mjs';
 import notesRoute from './routes/notes.mjs';
+import userRoute from './routes/user.mjs'
 
 const app = express();
-const port = 3000;
+const port = 5000;
 await connectToDatabase();
 
-app.get('/', function (req, res) {
-    res.send('Hello World')
-});
+app.use(express.json());
 
-app.use('/api/v1/auth',authRoute);
-app.use('/api/v1/notes',notesRoute);
+app.get('/', function (req, res) {res.send('Hello World')});
 
-app.listen(port,()=>{
+app.use('/api/v1/auth', authRoute);
+
+app.use('/api/v1/notes', notesRoute);
+
+app.use('/api/v1/user', userRoute);
+
+app.listen(port, () => {
     console.log(`server listing at http://localhost:${port}`);
 })

@@ -1,24 +1,30 @@
 import mongoose, { Schema } from "mongoose";
 
 const NotesSchema = new Schema({
+    createdBy: {
+        type: mongoose.Types.ObjectId,
+        required: true,
+        ref: 'Users',
+    },
     title: {
         type: String,
         required: true,
     },
-    description:{
+    description: {
         type: String,
         required: true,
-        unique: true
     },
-    tag:{
+    content: {
         type: String,
-        required: true,
-        unique: true
     },
-    date:{
+    tag: {
+        type: String,
+        default: 'General',
+    },
+    date: {
         type: Date,
-        default :Date.now
+        default: Date.now
     }
 });
 
-export default mongoose.model('user',NotesSchema);
+export default mongoose.model('notes', NotesSchema);

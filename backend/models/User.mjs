@@ -5,20 +5,25 @@ const UserSchema = new Schema({
         type: String,
         required: true,
     },
-    email:{
+    email: {
         type: String,
         required: true,
         unique: true
     },
-    password:{
+    password: {
         type: String,
         required: true,
-        unique: true
     },
-    date:{
+    Notes: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'Notes'
+        }
+    ],
+    date: {
         type: Date,
-        default :Date.now
+        default: Date.now
     }
 });
 
-export default mongoose.model('user',UserSchema);
+export default mongoose.model('user', UserSchema);
