@@ -8,7 +8,7 @@ export default function About() {
   const noteVars = useContext(NoteContext);
   useEffect(() => {
     noteVars[1]('About');
-  })
+  }, [])
 
   return (
     <div className='About'>

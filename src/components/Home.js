@@ -8,7 +8,7 @@ export default function Home() {
   const noteVars = useContext(NoteContext);
   useEffect(() => {
     noteVars[1]('Home');
-  })
+  }, [])
 
   return (
     <div className='Home'>
