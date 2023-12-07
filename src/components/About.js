@@ -7,12 +7,12 @@ export default function About() {
 
   const noteVars = useContext(NoteContext);
   useEffect(() => {
-    noteVars[1]('About');
+    noteVars.update('About');
   }, [])
 
   return (
     <div className='About'>
-      <div>This is {noteVars[0].name}</div>
+      <div>This is {noteVars.state.name}</div>
     </div>
   )
 }

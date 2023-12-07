@@ -7,12 +7,12 @@ export default function Home() {
 
   const noteVars = useContext(NoteContext);
   useEffect(() => {
-    noteVars[1]('Home');
+    noteVars.update('Home');
   }, [])
 
   return (
     <div className='Home'>
-      <div>This is {noteVars[0].name}</div>
+      <div>This is {noteVars.state.name}</div>
     </div>
   )
 }
