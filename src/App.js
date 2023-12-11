@@ -8,18 +8,23 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
 import NoteState from './context/notes/noteState';
+import ChipState from './context/filter chips/chipState';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <NoteState>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
-        </NoteState>
+        <ChipState>
+          <NoteState>
+            <Navbar />
+            <div className="container">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+              </Routes>
+            </div>
+          </NoteState>
+        </ChipState>
       </div>
     </Router>
   );
