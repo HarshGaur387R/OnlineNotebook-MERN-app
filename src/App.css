@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&family=K2D:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Kanit:wght@100;200;300;400;500;600;700;800&display=swap');
 
-body{
+
+body {
   background-color: #2f2f2f;
+  background-image: linear-gradient();
   color: white;
   overflow-x: hidden;
 
@@ -56,41 +59,42 @@ input.form-control:focus {
   box-shadow: none !important;
 }
 
-.search-input-container{
+.search-input-container {
   border-radius: 30px;
   box-shadow: 0px 0px 0px 2px yellow;
   background-color: yellow;
 }
 
-.search-image{
+.search-image {
   transition: width .2s ease;
   border: none;
   background-color: transparent;
 }
 
-.search-image-after-focus{
+.search-image-after-focus {
   width: 45px;
   padding-right: 10px;
   padding-left: 5px;
 }
-.search-image-before-focus{
+
+.search-image-before-focus {
   width: 0px;
   padding: 0;
 }
 
 /* Filter chip related items components */
 
-.filter-chip-container{
+.filter-chip-container {
   gap: 10px;
   padding-top: 15px;
   padding-bottom: 15px;
 }
 
-.badge{
+.badge {
   font-size: large;
   padding: 10px 20px 10px 20px;
-  width:fit-content;
-  height:40px;
+  width: fit-content;
+  height: 40px;
   border: 1px solid black;
   border-radius: 50px;
   background-color: yellow !important;
@@ -98,11 +102,152 @@ input.form-control:focus {
 
 }
 
-.chip-close-btn{
+.chip-close-btn {
   background-color: transparent;
   border: none;
   padding-left: 20px;
   cursor: pointer;
   font-size: x-large;
   width: 20px;
+}
+
+/* Login container related items components */
+
+.wallpaper{
+  width: 550px;
+  border-right: 1px solid #FFF500 ;
+}
+
+.wallpaper img{
+  width: 100%;
+}
+
+.login-container {
+  border-bottom: 1px solid #FFF500;
+}
+
+.login-form {
+  border-bottom: 1px solid #FFF500;
+  background: linear-gradient(217deg, #FFF500 0%, #3A3807 100%);
+  width: 550px;
+  height: 632px;
+}
+
+.login-header {
+  color: #000;
+  text-align: center;
+  font-family: 'kanit';
+  font-size: 36px;
+  font-weight: 400;
+}
+
+.input-container {
+  width: 400px;
+}
+
+
+.login-inputs {
+  font-size: large;
+  width: 100%;
+  color: white;
+  background-color: transparent;
+  border: 1px solid black;
+  padding: 3px;
+}
+
+
+.input-label{
+  color: #000;
+  text-align: center;
+  font-family: 'kanit';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.login-submit-button {
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 40px;
+  border: 1px solid black;
+  background: transparent;
+  width: 400px;
+  color: black;
+  font-family: 'kanit';
+  font-size: 24px;
+  font-weight: 600;
+  transition: .1s all ease;
+}
+
+.login-submit-button:hover{
+  border: 1px solid black;
+  color: white;
+  background-color: black;
+}
+
+.style-link a {
+  color: #FFF;
+  text-align: center;
+  font-family: 'kanit';
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration-line: underline;
+}
+
+/* signup related items  */
+
+.signup-header {
+  color: #FFF500;
+  text-align: center;
+  font-family: 'kanit';
+  font-size: 36px;
+  font-weight: 400;
+}
+
+.signup-form {
+  border-bottom: 1px solid #FFF500;
+  background-color: #1E1E1E;
+  width: 550px;
+  height: 632px;
+}
+
+.signup-inputs{
+    font-size: large;
+    width: 100%;
+    color: white;
+    background-color: transparent;
+    border: 1px solid #FFF500;
+    padding: 3px;
+  
+}
+
+.signup-input-label{
+  color: #FFF500;
+  text-align: center;
+  font-family: 'kanit';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.signup-submit-button {
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 40px;
+  border: 1px solid #FFF500;
+  background: transparent;
+  width: 400px;
+  color: #FFF500;
+  font-family: 'kanit';
+  font-size: 24px;
+  font-weight: 600;
+  transition: .1s all ease;
+}
+
+.signup-submit-button:hover{
+  border: 1px solid #FFF500;
+  color: black;
+  background-color: #FFF500;
 }
