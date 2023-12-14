@@ -113,6 +113,11 @@ input.form-control:focus {
 
 /* Login container related items components */
 
+.auth-container{
+  height: 100vh;
+  width: 100vw;
+}
+
 .wallpaper{
   width: 550px;
   border-right: 1px solid #FFF500 ;
@@ -196,6 +201,10 @@ input.form-control:focus {
 }
 
 /* signup related items  */
+
+.signup-container {
+  border-bottom: 1px solid #FFF500;
+}
 
 .signup-header {
   color: #FFF500;

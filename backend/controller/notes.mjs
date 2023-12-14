@@ -9,11 +9,11 @@ export async function fetchNotes(req, res) {
         let notesArr = user.Notes;
         const notes = await notesSchema.find({ '_id': { $in: notesArr } });
 
-        return res.status(https_codes.SUCCESS).json({ notes });
+        return res.status(https_codes.SUCCESS).json({ success: true, notes });
 
     } catch (error) {
         console.error('error from fetchNote\'s catch statement:', error);
-        return res.status(https_codes.SERVER_ERROR).json({ error: "error from server." });
+        return res.status(https_codes.SERVER_ERROR).json({ success: false, error: "error from server." });
     }
 }
 
@@ -27,11 +27,11 @@ export async function addNote(req, res) {
         await user.Notes.push(note._id);
         await user.save();
 
-        return res.status(https_codes.SUCCESS).json({ _id: note._id, title: note.title, description: note.description, tag: note.tag, content: note.content, date: note.date });
+        return res.status(https_codes.SUCCESS).json({ success: true, note: { _id: note._id, title: note.title, description: note.description, tag: note.tag, content: note.content, date: note.date } });
 
     } catch (error) {
         console.error('error from addNote\'s catch statement:', error);
-        return res.status(https_codes.SERVER_ERROR).json({ error: "error from server." });
+        return res.status(https_codes.SERVER_ERROR).json({ success: false, error: "error from server." });
     }
 }
 
@@ -40,21 +40,21 @@ export async function updateNote(req, res) {
         const user = req.user;
         const { noteId, title, description, content, tag } = req.body;
 
-        if ((!title || !title.length >= 1) || (!description || !description.length >= 1)) return res.status(https_codes.BAD_REQUEST).json({ error: "title and description should not be null" });
-        if (typeof title !== 'string' || typeof description !== 'string') return res.status(https_codes.BAD_REQUEST).json({ error: "Title and string should be in string type" });
-        
+        if ((!title || !title.length >= 1) || (!description || !description.length >= 1)) return res.status(https_codes.BAD_REQUEST).json({ success: false, error: "title and description should not be null" });
+        if (typeof title !== 'string' || typeof description !== 'string') return res.status(https_codes.BAD_REQUEST).json({ success: false, error: "Title and string should be in string type" });
+
         let note = await notesSchema.findById(noteId);
-        if (!note) return res.status(https_codes.BAD_REQUEST).json({ error: 'Note does not exist.' });
+        if (!note) return res.status(https_codes.BAD_REQUEST).json({ success: false, error: 'Note does not exist.' });
 
-        if(user._id.toString() !== note.createdBy.toString()) return res.status(https_codes.BAD_REQUEST).json({ error: "Note have permission to update note." });
-        
-        note = await notesSchema.findByIdAndUpdate(noteId,{title, description, content, tag},{new:true}).select('-createdBy');
+        if (user._id.toString() !== note.createdBy.toString()) return res.status(https_codes.BAD_REQUEST).json({ success: false, error: "Note have permission to update note." });
 
-        return res.status(https_codes.SUCCESS).json({ note });
+        note = await notesSchema.findByIdAndUpdate(noteId, { title, description, content, tag }, { new: true }).select('-createdBy');
+
+        return res.status(https_codes.SUCCESS).json({ success: true, note });
 
     } catch (error) {
         console.error('error from addNote\'s catch statement:', error);
-        return res.status(https_codes.SERVER_ERROR).json({ error: "error from server." });
+        return res.status(https_codes.SERVER_ERROR).json({ success: false, error: "error from server." });
     }
 }
 
@@ -65,18 +65,18 @@ export async function deleteNote(req, res) {
         const { noteId } = req.body;
 
         let note = await notesSchema.findById(noteId);
-        if (!note) return res.status(https_codes.BAD_REQUEST).json({ error: 'Note does not exist.' });
+        if (!note) return res.status(https_codes.BAD_REQUEST).json({ success: false, error: 'Note does not exist.' });
 
-        if (user._id.toString() !== note.createdBy.toString()) return res.status(https_codes.BAD_REQUEST).json({ error: 'Not have permission to delete this note.' });
+        if (user._id.toString() !== note.createdBy.toString()) return res.status(https_codes.BAD_REQUEST).json({ success: false, error: 'Not have permission to delete this note.' });
         await note.deleteOne();
 
         await user.Notes.pop(note._id);
         await user.save();
 
-        return res.status(https_codes.SUCCESS).json({ msg: "deleted!" });
+        return res.status(https_codes.SUCCESS).json({ success: true, msg: "deleted!" });
 
     } catch (error) {
         console.error('error from deleteNote\'s catch statement:', error);
-        return res.status(https_codes.SERVER_ERROR).json({ error: "error from server." });
+        return res.status(https_codes.SERVER_ERROR).json({ success: false, error: "error from server." });
     }
 }
