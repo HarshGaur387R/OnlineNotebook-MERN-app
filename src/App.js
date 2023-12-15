@@ -10,25 +10,29 @@ import About from './components/About';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import UserContext from './context/user/userContext';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 function App() {
-
-  const { isUserLoggedIn,isUserLoggedInState, setIsUserLoggedInState } = useContext(UserContext);
+  const { isUserLoggedIn, isUserLoggedInState, setIsUserLoggedInState } = useContext(UserContext);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkUserLoggedIn = async () => {
       const loggedInState = await isUserLoggedIn();
       setIsUserLoggedInState(loggedInState);
+      setLoading(false);
     };
     checkUserLoggedIn();
     // eslint-disable-next-line
   }, []);
 
-  console.log(isUserLoggedInState);
+  if (loading) {
+    return <div className='loading d-flex flex-column justify-content-center align-items-center'><i className="fa-solid fa-atom"></i></div>; // Or replace with a loading spinner
+  }
+
   return (
-    <Router >
-      <div className="App" >
+    <Router>
+      <div className="App">
         {isUserLoggedInState ? <Navbar /> : <span></span>}
         <div className="container">
           <Routes>
@@ -39,8 +43,7 @@ function App() {
           </Routes>
         </div>
       </div>
-    </Router >
+    </Router>
   );
 }
-
 export default App;
