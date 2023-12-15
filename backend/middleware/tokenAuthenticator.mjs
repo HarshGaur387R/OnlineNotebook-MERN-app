@@ -6,10 +6,10 @@ const jwt = jsonwebtoken;
 export async function tokenAuthenticator(req, res, next) {
 
     try {
-        let token = req.headers['authorization'];
-        token = token.split(' ')[1];
-
+        let token = req.headers['authorization']; 
         if (!token) return res.status(https_codes.BAD_REQUEST).json({ error: "AuthToken isn't provided." });
+        
+        token = token.split(' ')[1];
 
         const id = jwt.decode(token, configs.JWT_SECRET);
         
