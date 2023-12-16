@@ -14,7 +14,7 @@ const NoteState = (props) => {
 
     const [notesState, setState] = useState(s);
 
-    const addNote = async (value) => {
+    const addNote = async (title,description,tag) => {
 
         const tokenInStorage = localStorage.getItem('token');
 
@@ -26,9 +26,11 @@ const NoteState = (props) => {
 
         const requestOptions = {
             method: 'POST',
-            'Content-Type': 'application/json',
-            headers: { 'Authorization': 'Bearer ' + tokenInStorage },
-            body: JSON.stringify(value)
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + tokenInStorage 
+            },
+            body: JSON.stringify({title,description,tag})
         }
 
         try {
@@ -44,6 +46,8 @@ const NoteState = (props) => {
             setState(prevState => ({
                 notes: [...prevState.notes, responseDATA.note]
             }));
+
+            alert('Note added successfully');
 
             return;
         } catch (error) {

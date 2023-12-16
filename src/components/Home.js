@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import FilterChipContainer from './FilterChipContainer'
 import NotesItem from './NotesItem'
 import AddButtonComponent from './AddButtonComponent'
 import { useContext } from 'react'
 import NoteContext from '../context/notes/noteContext'
+import AddComponent from './AddComponent';
 
 export default function Home() {
 
-  const { notesState, fetchNotes, addNotes } = useContext(NoteContext);
+  const { notesState, fetchNotes } = useContext(NoteContext);
+  const [addButtonState, updateAddButtonState] = useState(false);
 
   useEffect(() => {
     const func = async () => {
@@ -18,14 +20,19 @@ export default function Home() {
 
   return (
     <div className='Home'>
-      <FilterChipContainer>
-      </FilterChipContainer>
 
-      <div className='row align-items-center justify-content-center gap-3'>
-       {notesState.notes? notesState.notes.map((v,i)=>{return <NotesItem key={i} title={v.title} tag={v.tag} description={v.description}></NotesItem>}) :''}
-      </div>
+      {!addButtonState ? '' : <AddComponent addButtonState={addButtonState} updateAddButtonState={updateAddButtonState} />}
 
-      <AddButtonComponent></AddButtonComponent>
+      {!addButtonState ? <FilterChipContainer /> : ''}
+
+      {
+        !addButtonState ?
+          <div className='row align-items-center justify-content-center gap-3'>
+            {notesState.notes ? notesState.notes.map((v, i) => { return <NotesItem key={i} title={v.title} tag={v.tag} description={v.description}></NotesItem> }) : ''}
+          </div> : ''
+      }
+
+      {!addButtonState ? <AddButtonComponent addButtonState={addButtonState} updateAddButtonState={updateAddButtonState}></AddButtonComponent> : ''}
     </div>
   )
 }

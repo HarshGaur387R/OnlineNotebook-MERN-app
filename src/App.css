@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&family=K2D:wght@100;200;300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Kanit:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&family=K2D:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800&display=swap');
 
 
 body {
@@ -272,24 +272,24 @@ input.form-control:focus {
   height: 80px;
   stroke-width: 2px;
   stroke: #000;
-  box-shadow:0px 2px 6px rgba(22, 22, 22, 0.49) ;
+  box-shadow: 0px 2px 6px rgba(22, 22, 22, 0.49);
   border: 2px solid black;
   right: 30px;
   bottom: 30px;
 }
 
-.floating-add-btn button{
+.floating-add-btn button {
   background-color: transparent;
   border: none;
 }
 
 
-.floating-add-btn:hover{
+.floating-add-btn:hover {
   background-color: rgb(247, 247, 175);
 }
 
 
-.floating-add-btn:active{
+.floating-add-btn:active {
   background-color: rgb(141, 141, 0);
   box-shadow: none;
 }
@@ -298,19 +298,101 @@ input.form-control:focus {
   font-size: 30px;
 }
 
-.loading{
+.loading {
   width: 100vW;
   height: 100vh;
   background-color: black;
 }
 
-.loading i{
+.loading i {
   font-size: 80px;
   animation: spin 1s linear infinite;
   color: yellow;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* Add component relate items */
+.Add-component-container {
+  height: 100vh;
+}
+
+.AddComponent {
+  padding: 30px;
+  background-color: #161616;
+}
+
+.ac-inputs-labels-container label {
+  font-size: x-large;
+  font-weight: 500;
+  color: #FFF500;
+}
+
+.ac-inputs-container {
+  width: 50em;
+}
+
+.ac-inputs-container input,
+textarea {
+  font-family: 'Inter';
+  font-size: large;
+  font-weight: 500;
+  width: 100%;
+  border: none;
+  border-radius: 30px;
+  padding: 10px;
+  border:3px solid black;
+  box-shadow: 0px 0px 0px 2px #FFF500;
+}
+
+.add-component-btn {
+  width: 100%;
+}
+
+.add-component-btn #ok-btn {
+  padding: 10px;
+  border-radius: 50px;
+  border: 2px solid #000;
+  background: #FFF500;
+  color: black;
+  font-size: large;
+  width: 126px;
+  height: 45px;
+}
+
+.add-component-btn #ok-btn:hover{
+  box-shadow: 0px 0px 0px 3px #FFF500;
+}
+
+.add-component-btn #ok-btn:active{
+  background-color: rgb(141, 141, 0);
+}
+
+.add-component-btn #cancel-btn {
+  padding: 10px;
+  border-radius: 50px;
+  border: 2px solid #FFF500;
+  background-color: transparent;
+  color: #FFF500;
+  font-size: large;
+  width: 126px;
+  height: 45px;
+}
+
+.add-component-btn #cancel-btn:hover{
+  box-shadow: 0px 0px 0px 2px #FFF500;
+}
+
+.add-component-btn #cancel-btn:active{
+  background-color: #FFF500;
+  color: black;
 }

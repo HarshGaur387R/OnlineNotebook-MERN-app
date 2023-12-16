@@ -20,14 +20,14 @@ export async function fetchNotes(req, res) {
 export async function addNote(req, res) {
     try {
         const user = req.user;
-        const { title, description, content, tag } = req.body;
+        const { title, description, tag } = req.body;
 
-        const note = await notesSchema.create({ createdBy: user._id, title, description, content, tag });
+        const note = await notesSchema.create({ createdBy: user._id, title, description, tag });
 
         await user.Notes.push(note._id);
         await user.save();
 
-        return res.status(https_codes.SUCCESS).json({ success: true, note: { _id: note._id, title: note.title, description: note.description, tag: note.tag, content: note.content, date: note.date } });
+        return res.status(https_codes.SUCCESS).json({ success: true, note: { _id: note._id, title: note.title, description: note.description, tag: note.tag,date: note.date } });
 
     } catch (error) {
         console.error('error from addNote\'s catch statement:', error);
@@ -38,7 +38,7 @@ export async function addNote(req, res) {
 export async function updateNote(req, res) {
     try {
         const user = req.user;
-        const { noteId, title, description, content, tag } = req.body;
+        const { noteId, title, description, tag } = req.body;
 
         if ((!title || !title.length >= 1) || (!description || !description.length >= 1)) return res.status(https_codes.BAD_REQUEST).json({ success: false, error: "title and description should not be null" });
         if (typeof title !== 'string' || typeof description !== 'string') return res.status(https_codes.BAD_REQUEST).json({ success: false, error: "Title and string should be in string type" });
@@ -48,7 +48,7 @@ export async function updateNote(req, res) {
 
         if (user._id.toString() !== note.createdBy.toString()) return res.status(https_codes.BAD_REQUEST).json({ success: false, error: "Note have permission to update note." });
 
-        note = await notesSchema.findByIdAndUpdate(noteId, { title, description, content, tag }, { new: true }).select('-createdBy');
+        note = await notesSchema.findByIdAndUpdate(noteId, { title, description,tag }, { new: true }).select('-createdBy');
 
         return res.status(https_codes.SUCCESS).json({ success: true, note });
 
