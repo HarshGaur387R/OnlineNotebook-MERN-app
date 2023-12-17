@@ -4,7 +4,7 @@ import { useContext } from 'react';
 
 export default function AddComponent(props) {
 
-    const {addNote} = useContext(NoteContext);;
+    const {addNote} = useContext(NoteContext);
 
     const { addButtonState, updateAddButtonState } = props;
 

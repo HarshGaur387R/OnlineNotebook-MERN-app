@@ -342,7 +342,7 @@ input.form-control:focus {
 }
 
 .ac-inputs-container input,
-textarea {
+.ac-inputs-container textarea {
   font-family: 'Inter';
   font-size: large;
   font-weight: 500;
@@ -395,4 +395,29 @@ textarea {
 .add-component-btn #cancel-btn:active{
   background-color: #FFF500;
   color: black;
+}
+
+/* NotesItem related items */
+
+.icon-btn{
+  background-color: transparent;
+  color: black;
+  border: none;
+}
+
+.icon-btn:hover{
+  color: black;
+  background-color: #e9af00 !important;
+}
+
+.icon-btn:active{
+  background-color: #fec51a !important;
+  border: none !important;
+  outline: thick double cyan !important;
+
+}
+
+.icon-btn:focus{
+  color: black;
+  background-color: #ffd042 !important;
 }

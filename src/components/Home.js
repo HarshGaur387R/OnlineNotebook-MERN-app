@@ -28,11 +28,12 @@ export default function Home() {
       {
         !addButtonState ?
           <div className='row align-items-center justify-content-center gap-3'>
-            {notesState.notes ? notesState.notes.map((v, i) => { return <NotesItem key={i} title={v.title} tag={v.tag} description={v.description}></NotesItem> }) : ''}
+            {notesState.notes ? notesState.notes.map((v, i) => { return <NotesItem key={i} title={v.title} tag={v.tag} description={v.description} _id={v._id}></NotesItem> }) : ''}
           </div> : ''
       }
 
       {!addButtonState ? <AddButtonComponent addButtonState={addButtonState} updateAddButtonState={updateAddButtonState}></AddButtonComponent> : ''}
+
     </div>
   )
 }
