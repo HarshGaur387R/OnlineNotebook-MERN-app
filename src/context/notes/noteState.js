@@ -5,8 +5,8 @@ import { useContext } from "react";
 import UserContext from "../user/userContext";
 
 const NoteState = (props) => {
-    
-    const {setIsUserLoggedInState} = useContext(UserContext);
+
+    const { setIsUserLoggedInState } = useContext(UserContext);
 
     const s = {
         notes: []
@@ -14,11 +14,11 @@ const NoteState = (props) => {
 
     const [notesState, setState] = useState(s);
 
-    const addNote = async (title,description,tag) => {
+    const addNote = async (title, description, tag) => {
 
         const tokenInStorage = localStorage.getItem('token');
 
-        if(!tokenInStorage){
+        if (!tokenInStorage) {
             alert('Please Login again');
             setIsUserLoggedInState(false);
             return;
@@ -26,11 +26,11 @@ const NoteState = (props) => {
 
         const requestOptions = {
             method: 'POST',
-            headers: { 
+            headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + tokenInStorage 
+                'Authorization': 'Bearer ' + tokenInStorage
             },
-            body: JSON.stringify({title,description,tag})
+            body: JSON.stringify({ title, description, tag })
         }
 
         try {
@@ -57,11 +57,106 @@ const NoteState = (props) => {
         }
     }
 
+
+    const updateNote = async (noteId, title, description, tag) => {
+
+        const tokenInStorage = localStorage.getItem('token');
+
+        if (!tokenInStorage) {
+            alert('Please Login again');
+            setIsUserLoggedInState(false);
+            return;
+        }
+
+        const requestOptions = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + tokenInStorage
+            },
+            body: JSON.stringify({ noteId, title, description, tag })
+        }
+
+        try {
+            const noteIndex = notesState.notes.findIndex((v, i) => v._id === noteId);
+
+            if (noteIndex === -1) {
+                alert('Note note found!');
+                return;
+            }
+
+            const responseJSON = await fetch(`${config.HOST_URL}/api/v1/notes/update`, requestOptions);
+            const responseDATA = await responseJSON.json();
+
+            if (!responseDATA.success) {
+                console.error('failed to update note', responseDATA.error);
+                alert('failed to update note');
+                return;
+            }
+
+            const newNotes = [...notesState.notes];
+            newNotes[noteIndex] = responseDATA.note;
+            setState({ notes: newNotes });
+
+            alert('Note updated successfully');
+            return;
+
+        } catch (error) {
+            console.error('unknown error: failed to update note', error);
+            alert('failed to update note');
+            return;
+        }
+    }
+
+
+    const deleteNote = async (noteId) => {
+
+        const tokenInStorage = localStorage.getItem('token');
+
+        if (!tokenInStorage) {
+            alert('Please Login again');
+            setIsUserLoggedInState(false);
+            return;
+        }
+
+        const requestOptions = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + tokenInStorage
+            },
+            body: JSON.stringify({ noteId })
+        }
+
+        try {
+            const responseJSON = await fetch(`${config.HOST_URL}/api/v1/notes/delete`, requestOptions);
+            const responseDATA = await responseJSON.json();
+
+            if (!responseDATA.success) {
+                console.error('failed to delete note', responseDATA.error);
+                alert('failed to delete note');
+                return;
+            }
+
+            const newNotes = notesState.notes.filter((obj) => obj._id !== noteId);
+            setState({ notes: newNotes });
+
+            alert(responseDATA.msg);
+            return;
+
+        } catch (error) {
+            console.error('unknown error: failed to delete note', error);
+            alert('failed to delete note');
+            return;
+        }
+
+    }
+
     const fetchNotes = async (value) => {
 
         const tokenInStorage = localStorage.getItem('token');
 
-        if(!tokenInStorage){
+        if (!tokenInStorage) {
             alert('Please Login again');
             setIsUserLoggedInState(false);
             return;
@@ -83,7 +178,7 @@ const NoteState = (props) => {
                 return;
             }
 
-            setState({notes: responseDATA.notes});
+            setState({ notes: responseDATA.notes });
             return;
 
         } catch (error) {
@@ -95,7 +190,7 @@ const NoteState = (props) => {
 
     return (
 
-        <NoteContext.Provider value={{ notesState, addNote, fetchNotes }}>
+        <NoteContext.Provider value={{ notesState, addNote, fetchNotes, updateNote, deleteNote }}>
             {props.children}
         </NoteContext.Provider>
     )

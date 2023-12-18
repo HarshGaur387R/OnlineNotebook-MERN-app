@@ -7,6 +7,7 @@ export async function fetchNotes(req, res) {
     try {
         const user = req.user;
         let notesArr = user.Notes;
+
         const notes = await notesSchema.find({ '_id': { $in: notesArr } });
 
         return res.status(https_codes.SUCCESS).json({ success: true, notes });

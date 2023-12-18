@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { useContext } from 'react';
+import NoteContext from '../context/notes/noteContext';
 
 export default function EditNote(props) {
     const modalId = props.modalId; // Retrieve the unique modal id
@@ -7,6 +9,7 @@ export default function EditNote(props) {
     const [description, updateDescription] = useState(props.description);
     const [tag, updateTag] = useState(props.tag);
 
+    const { updateNote } = useContext(NoteContext);
 
     useEffect(() => {
 
@@ -26,7 +29,7 @@ export default function EditNote(props) {
     }, [modalId, props]);
 
     return (
-        <div>
+        <form onSubmit={(e) => {e.preventDefault(); updateNote(props._id, title, description, tag) }}>
             <div className="modal fade text-dark" id={modalId} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
@@ -51,11 +54,11 @@ export default function EditNote(props) {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Save changes</button>
+                            <button type="submit" className="btn btn-primary">Save changes</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     )
 }
