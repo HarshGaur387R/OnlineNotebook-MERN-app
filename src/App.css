@@ -421,3 +421,29 @@ input.form-control:focus {
   color: black;
   background-color: #ffd042 !important;
 }
+
+/* About related items */
+
+.about-card{
+  background-color:#252525;
+  width: 500px;
+  height: 200px;
+  padding: 20px;
+}
+
+.about-card-text{
+  font-size: small;
+}
+
+
+.about-heading{
+  width: 1000px;
+}
+
+.about-heading h1{
+  color: #FFF500;
+}
+
+.about-desc{
+  width: 1000px;
+}

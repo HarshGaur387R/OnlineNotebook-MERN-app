@@ -9,8 +9,11 @@ import Home from './components/Home';
 import About from './components/About';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import Profile from './components/Profile';
 import UserContext from './context/user/userContext';
 import { useContext, useEffect, useState } from 'react';
+
+
 
 function App() {
   const { isUserLoggedIn, isUserLoggedInState, setIsUserLoggedInState } = useContext(UserContext);
@@ -39,7 +42,8 @@ function App() {
             <Route path="/" element={isUserLoggedInState ? <Home /> : <Login />} />
             <Route path="/login" element={isUserLoggedInState ? <Home /> : <Login />} />
             <Route path="/signup" element={isUserLoggedInState ? <Home /> : <Signup />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/profile" element={isUserLoggedInState ? <Profile /> : <Login />} />
+            <Route path="/about" element={isUserLoggedInState ? <About /> : <Login />} />
           </Routes>
         </div>
       </div>
