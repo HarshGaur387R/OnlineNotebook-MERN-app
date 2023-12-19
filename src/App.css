@@ -447,3 +447,90 @@ input.form-control:focus {
 .about-desc{
   width: 1000px;
 }
+
+/* Profile nav related items */
+
+.border-radius-30{
+  border-radius: 30px;
+}
+
+.profile-nav{
+  color: black;
+  background-color: red;
+  width: 300px;
+  height: 600px;
+  background-color: #161616;
+}
+
+.profile-nav-btn-container #Logout-btn:hover{
+  color: #FFF500 !important;
+}
+
+.profile-nav-btn-container i{
+  padding-right: 10px;
+  font-size: larger;
+  color: #FFF500;
+}
+
+.profile-nav-btn{
+  width: 100%;
+  padding: 10px;
+  border: 0;
+  font-family: 'Inter';
+  font-weight: 500;
+  color: white;
+  background-color: transparent;
+}
+
+.profile-nav-btn:hover{
+  background-color: #1f1f1f;
+}
+
+.profile-nav-btn:active{
+  background-color: #212121;
+}
+
+.profile-nav-btn-container #Logout-btn{
+  background-color: transparent;
+}
+
+.my-account{
+  background-color: #161616;
+  width: 800px;
+  height: 600px;
+  padding: 30px;
+  text-align: start;
+}
+
+.my-account h1{
+  color: #FFF500;
+  padding-bottom: 40px;
+}
+
+.my-account-form{
+  gap: 30px;
+}
+
+.my-account-input-container{
+  width: 100%;
+}
+
+.my-account-input-container label{
+  padding-bottom: 20px;
+}
+
+.my-account-input{
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #292929;
+  border: 1px solid white;
+  color: white;
+}
+
+.my-account-label{
+  font-size: large;
+  font-family: 'Inter';
+  width: 100%;
+}
+
