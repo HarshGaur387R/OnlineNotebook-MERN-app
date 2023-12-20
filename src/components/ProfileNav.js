@@ -1,15 +1,19 @@
 import React from 'react'
 
-export default function ProfileNav() {
+export default function ProfileNav(props) {
+
+    const updateMyAccountState = props.updateMyAccountState;
+    const showMyAccountState = props.showMyAccountState;
+
     return (
         <div className='profile-nav d-flex flex-column justify-content-between align-items-center p-5 border-radius-30'>
             <div className="profile-options">
-                <div className='profile-nav-btn-container col justify-content-center align-items-center'>
-                    <button type='button' id='My-Account-btn' className='profile-nav-btn'><i className="fa-regular fa-user"></i>My Account</button>
+                <div className={`profile-nav-btn-container col justify-content-center align-items-center ${showMyAccountState? 'profile-nav-active':''}`}>
+                    <button onClick={()=>{updateMyAccountState(true)}} type='button' id='My-Account-btn' className='profile-nav-btn'><i className="fa-regular fa-user"></i>My Account</button>
                 </div>
 
-                <div className='profile-nav-btn-container col justify-content-center align-items-center pt-2'>
-                    <button type='button' id='Notes-Data-btn' className='profile-nav-btn'><i className="fa-regular fa-note-sticky"></i>Notes Data</button>
+                <div className={`profile-nav-btn-container col justify-content-center align-items-center my-4 ${!showMyAccountState? 'profile-nav-active':''}`}>
+                    <button onClick={()=>{updateMyAccountState(false)}} type='button' id='Notes-Data-btn' className='profile-nav-btn'><i className="fa-regular fa-note-sticky"></i>Notes Data</button>
                 </div>
             </div>
 
