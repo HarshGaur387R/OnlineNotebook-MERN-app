@@ -14,7 +14,6 @@ import UserContext from './context/user/userContext';
 import { useContext, useEffect, useState } from 'react';
 
 
-
 function App() {
   const { isUserLoggedIn, isUserLoggedInState, setIsUserLoggedInState } = useContext(UserContext);
   const [loading, setLoading] = useState(true);

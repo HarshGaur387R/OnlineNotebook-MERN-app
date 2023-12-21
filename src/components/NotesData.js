@@ -23,45 +23,59 @@ function darkenColor(color, percent) {
 }
 
 function extractNotesDataForPieChart(notes = []) {
-  const data = [];
-  notes.forEach((e, i) => {
-    const index = data.findIndex((v, i) => v.label === e.tag);
+  const data = {};
 
-    if (index !== -1) {
-      data[index].value = data[index].value + 1;
-      return
+  notes.forEach((e,i) => {
+    if(!data[e.tag]){
+      data[e.tag] = { id: i + 1, value: 1, label: e.tag, color: '#FFF500' };
     }
-    else {
-      data.push({ id: data.length + 1, value: 1, label: e.tag, color: '#FFF500' });
+    else{
+      data[e.tag].value += 1;
     }
   })
-  return data;
+
+  return Object.values(data);
 }
 
 function extractNotesDataForBarGraph(notes = []) {
-  const data = { name: [], stats: [] };
 
+  const map = new Map()
   notes.forEach((e, i) => {
+    map.set(e.tag, (map.get(e.tag) || 0) + 1)
+  });
 
-    const index = data.name.findIndex((v) => v === e.tag)
+  const data = {
+    names: Array.from(map.keys()),
+    stats: Array.from(map.values())
+  }
 
-    if (index !== -1) {
-      data.stats[index] = data.stats[index] + 1;
-      return;
+  console.log(data);
+  return data;
+}
+
+function extractNotesDataForLineChart(notes = []) {
+  const data = {};
+
+  notes.forEach((v, i) => {
+    const date = new Date(v.date).getDate();
+    if (data[date]) {
+      data[date] += 1;
     }
     else {
-      data.name.push(e.tag);
-      data.stats.push(1);
+      data[date] = 1;
     }
   })
 
-  return data;
+  const xAxis = Object.keys(data).map(Number);
+  const yAxis = Object.values(data).map(Number);
+
+  return { xAxis, yAxis };
 }
+
 
 export default function NotesData() {
 
   const { notesState, fetchNotes } = useContext(NoteContext);
-
   useEffect(() => {
     const func = async () => {
       await fetchNotes();
@@ -73,7 +87,7 @@ export default function NotesData() {
 
   const data = extractNotesDataForPieChart(notes);
   const barData = extractNotesDataForBarGraph(notes);
-
+  const lineChart = extractNotesDataForLineChart(notes)
 
   // Darken each color by 10% more than the previous
   const darkenedData = data.map((item, index) => ({
@@ -95,7 +109,7 @@ export default function NotesData() {
                     xAxis={[
                       {
                         id: 'barCategories',
-                        data: barData.name,
+                        data: barData.names,
                         scaleType: 'band',
                       },
                     ]}
@@ -130,11 +144,11 @@ export default function NotesData() {
           <div className="lineChart">
             <ThemeProvider theme={darkTheme}>
               <LineChart
-                xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
+                xAxis={[{ data: lineChart.xAxis }]}
                 series={[
                   {
-                    data: [2, 5.5, 2, 8.5, 1.5, 5],
-                    color:'#FFF500'
+                    data: lineChart.yAxis,
+                    color: '#FFF500'
                   },
                 ]}
                 width={800}
@@ -147,26 +161,3 @@ export default function NotesData() {
     </div>
   )
 }
-
-
-/*  <ThemeProvider theme={darkTheme}>
-      <div>
-        <BarChart
-          xAxis={[
-            {
-              id: 'barCategories',
-              data: ['bar A', 'bar B', 'bar C'],
-              scaleType: 'band',
-            },
-          ]}
-          series={[
-            {
-              data: [2, 5, 3],
-            },
-          ]}
-          width={400}
-          height={300}
-        />
-      </div>
-    </ThemeProvider>
-    */
