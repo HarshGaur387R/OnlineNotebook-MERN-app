@@ -52,7 +52,6 @@ const UserState = (props) => {
                 return;
             }
             localStorage.setItem('token', responseDATA.authToken);
-            updateUserData(responseDATA.data);
             setIsUserLoggedInState(true)
             return
 
@@ -82,7 +81,6 @@ const UserState = (props) => {
                 return;
             }
             localStorage.setItem('token', responseDATA.authToken);
-            updateUserData(responseDATA.data)
             setIsUserLoggedInState(true)
             return;
 
