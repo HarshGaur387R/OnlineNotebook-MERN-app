@@ -48,7 +48,7 @@ const UserState = (props) => {
 
             if (!responseDATA.success) {
                 alert('failed to login');
-                console.log('failed to login');
+                console.error('failed to login');
                 return;
             }
             localStorage.setItem('token', responseDATA.authToken);
@@ -77,7 +77,7 @@ const UserState = (props) => {
 
             if (!responseDATA.success) {
                 alert('failed to signup');
-                console.log('failed to signup');
+                console.error('failed to signup');
                 return;
             }
             localStorage.setItem('token', responseDATA.authToken);
@@ -114,7 +114,7 @@ const UserState = (props) => {
 
             if (!responseDATA.success) {
                 alert('failed to update');
-                console.log('failed to update : response success is false');
+                console.error('failed to update : response success is false');
                 return;
             }
 

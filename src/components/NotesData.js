@@ -49,7 +49,6 @@ function extractNotesDataForBarGraph(notes = []) {
     stats: Array.from(map.values())
   }
 
-  console.log(data);
   return data;
 }
 
