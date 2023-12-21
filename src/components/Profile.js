@@ -12,7 +12,7 @@ export default function Profile() {
     <div className='d-flex justify-content-center align-items-center vh-100 gap-5'>
       <ProfileNav updateMyAccountState={updateMyAccountState} showMyAccountState={showMyAccountState}></ProfileNav>
 
-      {showMyAccountState ? <MyAccount></MyAccount> : <NotesData></NotesData>}
+      {showMyAccountState ? <MyAccount ></MyAccount> : <NotesData></NotesData>}
 
     </div>
   )

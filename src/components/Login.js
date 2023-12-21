@@ -30,7 +30,7 @@ export default function Login(props) {
 
           <div className='input-container d-flex flex-column justify-content-start align-items-start'>
             <label className='input-label' htmlFor="password-input">Password</label>
-            <input type="text" id='password-input' value={password_input} onChange={(e)=>updatePasswordUpdate(e.target.value)} minLength={12} className='login-inputs' />
+            <input type="password" id='password-input' value={password_input} onChange={(e)=>updatePasswordUpdate(e.target.value)} minLength={12} className='login-inputs' />
           </div>
 
           <button className='login-submit-button' typeof='submit'>Login</button>

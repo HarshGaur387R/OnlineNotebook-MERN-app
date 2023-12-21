@@ -5,6 +5,8 @@ import { useState } from "react";
 const UserState = (props) => {
 
     const [isUserLoggedInState, setIsUserLoggedInState] = useState(false);
+    const [userData, updateUserData] = useState({});
+
 
     const isUserLoggedIn = async () => {
 
@@ -21,6 +23,8 @@ const UserState = (props) => {
             const responseDATA = await responseJSON.json();
 
             if (typeof responseDATA.success !== 'boolean') return false;
+
+            updateUserData(responseDATA.data)
             return responseDATA.success;
 
         } catch (error) {
@@ -48,6 +52,7 @@ const UserState = (props) => {
                 return;
             }
             localStorage.setItem('token', responseDATA.authToken);
+            updateUserData(responseDATA.data);
             setIsUserLoggedInState(true)
             return
 
@@ -77,6 +82,7 @@ const UserState = (props) => {
                 return;
             }
             localStorage.setItem('token', responseDATA.authToken);
+            updateUserData(responseDATA.data)
             setIsUserLoggedInState(true)
             return;
 
@@ -87,8 +93,56 @@ const UserState = (props) => {
         }
     }
 
+    const updateUser = async (name, email, password) => {
+
+        const payload = { name, email, password };
+        const tokenInStorage = localStorage.getItem('token');
+
+        if (!tokenInStorage) {
+            alert('Please Login again');
+            setIsUserLoggedInState(false);
+            return;
+        }
+
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' ,'Authorization': 'Bearer ' + tokenInStorage},
+            body: JSON.stringify(payload)
+        }
+
+        try {
+            const responseJSON = await fetch(`${config.HOST_URL}/api/v1/user/update`, requestOptions);
+            const responseDATA = await responseJSON.json();
+
+            if (!responseDATA.success) {
+                alert('failed to update');
+                console.log('failed to update : response success is false');
+                return;
+            }
+
+            updateUserData(responseDATA.data);
+            setIsUserLoggedInState(true);
+            alert('User updated successfully!');
+            return;
+
+        } catch (error) {
+            alert('error caught: failed to update');
+            console.error(error);
+            return;
+        }
+    }
+
+    const logoutUser = () => {
+        if (localStorage.getItem('token')) {
+            localStorage.removeItem('token');
+        }
+        alert('Logout successfully');
+
+        window.location.href = '/';
+    }
+
     return (
-        <UserContext.Provider value={{ isUserLoggedInState, setIsUserLoggedInState, isUserLoggedIn, loginUser, signupUser }}>
+        <UserContext.Provider value={{ isUserLoggedInState, userData, setIsUserLoggedInState, isUserLoggedIn, loginUser, signupUser, logoutUser, updateUser }}>
             {props.children}
         </UserContext.Provider>
     )

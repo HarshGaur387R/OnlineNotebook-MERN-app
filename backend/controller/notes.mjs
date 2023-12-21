@@ -71,7 +71,9 @@ export async function deleteNote(req, res) {
         if (user._id.toString() !== note.createdBy.toString()) return res.status(https_codes.BAD_REQUEST).json({ success: false, error: 'Not have permission to delete this note.' });
         await note.deleteOne();
 
-        await user.Notes.pop(note._id);
+        const filteredNotes = await user.Notes.filter((v,i)=>v.toString() !== note._id.toString());
+        user.Notes = filteredNotes;
+
         await user.save();
 
         return res.status(https_codes.SUCCESS).json({ success: true, msg: "deleted!" });
