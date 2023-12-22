@@ -5,6 +5,7 @@ import "../App.css"
 import search_logo from '../assets/search-logo.svg'
 import { useContext } from "react";
 import chipContext from "../context/filter chips/chipContext";
+import NoteContext from "../context/notes/noteContext";
 
 function Navbar() {
 
@@ -15,10 +16,9 @@ function Navbar() {
         else if (!bool) updateSearchInputFocus('search-image-before-focus');
     }
 
+    const {fetchNotes} = useContext(NoteContext);
     const { addChip } = useContext(chipContext);
-
     const location = useLocation();
-
     const [searchInputValue, updateSearchInputValue] = useState({ value: '' });
 
     return (
@@ -45,7 +45,7 @@ function Navbar() {
 
                             <input id="searchInput" value={searchInputValue.value} onChange={(event) => { updateSearchInputValue({ value: event.target.value }) }} className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
 
-                            <button onClick={(e) => { e.preventDefault(); addChip(searchInputValue.value) }} className={`search-image ${SearchInputFocus}`}>
+                            <button onClick={async (e) => { e.preventDefault(); addChip(searchInputValue.value); await fetchNotes(searchInputValue.value)}} className={`search-image ${SearchInputFocus}`}>
                                 <img src={search_logo} alt="search-button" className={SearchInputFocus} />
                             </button>
                         </form>

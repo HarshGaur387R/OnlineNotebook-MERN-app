@@ -164,12 +164,11 @@ const NoteState = (props) => {
 
         const requestOptions = {
             method: 'GET',
-            'Content-Type': 'application/json',
-            headers: { 'Authorization': 'Bearer ' + tokenInStorage }
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + tokenInStorage }
         }
 
         try {
-            const responseJSON = await fetch(`${config.HOST_URL}/api/v1/notes/fetch-notes`, requestOptions);
+            const responseJSON = await fetch(`${config.HOST_URL}/api/v1/notes/fetch-notes?search=${value?value:''}`, requestOptions);
             const responseDATA = await responseJSON.json();
 
             if (!responseDATA.success) {

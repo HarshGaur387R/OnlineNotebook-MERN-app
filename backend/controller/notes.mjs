@@ -7,8 +7,13 @@ export async function fetchNotes(req, res) {
     try {
         const user = req.user;
         let notesArr = user.Notes;
+        const query = req.query;
 
         const notes = await notesSchema.find({ '_id': { $in: notesArr } });
+
+        if (query.search) {
+            return res.status(https_codes.SUCCESS).json({ success: true, notes: notes.filter(e=> e.tag === query.search) });
+        }
 
         return res.status(https_codes.SUCCESS).json({ success: true, notes });
 
@@ -28,7 +33,7 @@ export async function addNote(req, res) {
         await user.Notes.push(note._id);
         await user.save();
 
-        return res.status(https_codes.SUCCESS).json({ success: true, note: { _id: note._id, title: note.title, description: note.description, tag: note.tag,date: note.date } });
+        return res.status(https_codes.SUCCESS).json({ success: true, note: { _id: note._id, title: note.title, description: note.description, tag: note.tag, date: note.date } });
 
     } catch (error) {
         console.error('error from addNote\'s catch statement:', error);
@@ -41,6 +46,7 @@ export async function updateNote(req, res) {
         const user = req.user;
         const { noteId, title, description, tag } = req.body;
 
+
         if ((!title || !title.length >= 1) || (!description || !description.length >= 1)) return res.status(https_codes.BAD_REQUEST).json({ success: false, error: "title and description should not be null" });
         if (typeof title !== 'string' || typeof description !== 'string') return res.status(https_codes.BAD_REQUEST).json({ success: false, error: "Title and string should be in string type" });
 
@@ -49,7 +55,7 @@ export async function updateNote(req, res) {
 
         if (user._id.toString() !== note.createdBy.toString()) return res.status(https_codes.BAD_REQUEST).json({ success: false, error: "Note have permission to update note." });
 
-        note = await notesSchema.findByIdAndUpdate(noteId, { title, description,tag }, { new: true }).select('-createdBy');
+        note = await notesSchema.findByIdAndUpdate(noteId, { title, description, tag }, { new: true }).select('-createdBy');
 
         return res.status(https_codes.SUCCESS).json({ success: true, note });
 
@@ -71,7 +77,7 @@ export async function deleteNote(req, res) {
         if (user._id.toString() !== note.createdBy.toString()) return res.status(https_codes.BAD_REQUEST).json({ success: false, error: 'Not have permission to delete this note.' });
         await note.deleteOne();
 
-        const filteredNotes = await user.Notes.filter((v,i)=>v.toString() !== note._id.toString());
+        const filteredNotes = await user.Notes.filter((v, i) => v.toString() !== note._id.toString());
         user.Notes = filteredNotes;
 
         await user.save();
