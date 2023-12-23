@@ -350,7 +350,7 @@ input.form-control:focus {
   border: none;
   border-radius: 30px;
   padding: 10px;
-  border:3px solid black;
+  border: 3px solid black;
   box-shadow: 0px 0px 0px 2px #FFF500;
 }
 
@@ -369,11 +369,11 @@ input.form-control:focus {
   height: 45px;
 }
 
-.add-component-btn #ok-btn:hover{
+.add-component-btn #ok-btn:hover {
   box-shadow: 0px 0px 0px 3px #FFF500;
 }
 
-.add-component-btn #ok-btn:active{
+.add-component-btn #ok-btn:active {
   background-color: rgb(141, 141, 0);
 }
 
@@ -388,73 +388,74 @@ input.form-control:focus {
   height: 45px;
 }
 
-.add-component-btn #cancel-btn:hover{
+.add-component-btn #cancel-btn:hover {
   box-shadow: 0px 0px 0px 2px #FFF500;
 }
 
-.add-component-btn #cancel-btn:active{
+.add-component-btn #cancel-btn:active {
   background-color: #FFF500;
   color: black;
 }
 
 /* NotesItem related items */
 
-.icon-btn{
+.icon-btn {
   background-color: transparent;
   color: black;
   border: none;
 }
 
-.icon-btn:hover{
+.icon-btn:hover {
   color: black;
   background-color: #e9af00 !important;
 }
 
-.icon-btn:active{
+.icon-btn:active {
   background-color: #fec51a !important;
   border: none !important;
   outline: thick double cyan !important;
 
 }
 
-.icon-btn:focus{
+.icon-btn:focus {
   color: black;
   background-color: #ffd042 !important;
 }
 
 /* About related items */
-
-.about-card{
-  background-color:#252525;
-  width: 500px;
-  height: 200px;
+.about-card {
+  background-color: #252525;
+  width: 100%;
   padding: 20px;
 }
 
-.about-card-text{
+.about-card-text {
   font-size: small;
 }
 
-
-.about-heading{
-  width: 1000px;
+.about-heading {
+  width: 100%;
 }
 
-.about-heading h1{
+.about-heading h1 {
   color: #FFF500;
 }
 
-.about-desc{
+.about-desc {
+  width: 100%;
+}
+
+.about-sub-container {
   width: 1000px;
 }
 
 /* Profile nav related items */
 
-.border-radius-30{
+.border-radius-30 {
   border-radius: 30px;
 }
 
-.profile-nav{
+.profile-nav {
   color: black;
   background-color: red;
   width: 300px;
@@ -462,19 +463,19 @@ input.form-control:focus {
   background-color: #161616;
 }
 
-.profile-nav-btn-container #Logout-btn:hover{
+.profile-nav-btn-container #Logout-btn:hover {
   box-shadow: none;
   background-color: transparent;
   color: #FFF500 !important;
 }
 
-.profile-nav-btn-container i{
+.profile-nav-btn-container i {
   padding-right: 10px;
   font-size: larger;
   color: #FFF500;
 }
 
-.profile-nav-btn{
+.profile-nav-btn {
   width: 100%;
   padding: 20px;
   border-radius: 30px;
@@ -487,20 +488,20 @@ input.form-control:focus {
   transition: all .2s ease;
 }
 
-.profile-nav-btn:hover{
+.profile-nav-btn:hover {
   background-color: #1f1f1f;
 }
 
-.profile-nav-btn:active{
+.profile-nav-btn:active {
   color: #FFF500;
   background-color: #212121;
 }
 
-.profile-nav-btn-container #Logout-btn{
+.profile-nav-btn-container #Logout-btn {
   background-color: transparent;
 }
 
-.my-account{
+.my-account {
   background-color: #161616;
   width: 800px;
   height: 600px;
@@ -508,24 +509,24 @@ input.form-control:focus {
   text-align: start;
 }
 
-.my-account h1{
+.my-account h1 {
   color: #FFF500;
   padding-bottom: 40px;
 }
 
-.my-account-form{
+.my-account-form {
   gap: 30px;
 }
 
-.my-account-input-container{
+.my-account-input-container {
   width: 100%;
 }
 
-.my-account-input-container label{
+.my-account-input-container label {
   padding-bottom: 20px;
 }
 
-.my-account-input{
+.my-account-input {
   padding: 10px;
   width: 100%;
   border-radius: 10px;
@@ -534,14 +535,14 @@ input.form-control:focus {
   color: white;
 }
 
-.my-account-label{
+.my-account-label {
   font-size: large;
   font-family: 'Inter';
   width: 100%;
 }
 
 
-.profile-nav-active{
+.profile-nav-active {
   background-color: #1f1f1f;
   box-shadow: 0px 0px 0px 1px #FFF500;
   border-radius: 30px;
@@ -550,8 +551,51 @@ input.form-control:focus {
 
 /* Notes data related content */
 
-.notes-data{
+.notes-data {
   background-color: #161616;
   width: 800px;
   height: 600px;
+}
+
+/* Responsive Control */
+
+@media screen and (max-width: 1000px) {
+
+  .about-sub-container {
+    width: 700px;
+  }
+
+}
+
+@media screen and (max-width: 700px) {
+
+  .about-sub-container {
+    width: 600px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  .about-sub-container {
+    width: 400px;
+    height: 100%;
+  }
+
+}
+
+@media screen and (max-width: 400px) {
+  .about-heading{
+    padding-top: 10px;
+  }
+
+  .about-sub-container {
+    width: 300px;
+    height: 100%;
+  }
+
+  .about-desc{
+    padding-top: 5px !important;
+
+  }
+
 }
