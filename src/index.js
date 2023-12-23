@@ -6,17 +6,20 @@ import reportWebVitals from './reportWebVitals';
 import UserState from './context/user/userState';
 import ChipState from './context/filter chips/chipState';
 import NoteState from './context/notes/noteState';
+import AlertState from './context/alert/alertState';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-  <UserState>
-    <ChipState>
-      <NoteState>
-        <App />
-      </NoteState>
-    </ChipState>
-  </UserState>
+  <AlertState>
+    <UserState>
+      <ChipState>
+        <NoteState>
+          <App />
+        </NoteState>
+      </ChipState>
+    </UserState>
+  </AlertState>
   // </React.StrictMode>
 );
 

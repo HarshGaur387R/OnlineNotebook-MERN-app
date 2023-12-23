@@ -10,13 +10,15 @@ import About from './components/About';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Profile from './components/Profile';
+import Alert from 'react-bootstrap/Alert';
 import UserContext from './context/user/userContext';
+import AlertContext from './context/alert/alertContext';
 import { useContext, useEffect, useState } from 'react';
-
 
 function App() {
   const { isUserLoggedIn, isUserLoggedInState, setIsUserLoggedInState } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
+  const {alertState, setAlertState} = useContext(AlertContext);
 
   useEffect(() => {
     const checkUserLoggedIn = async () => {
@@ -35,6 +37,16 @@ function App() {
   return (
     <Router>
       <div className="App">
+
+        {alertState.show ?
+          <Alert className='position-fixed w-100' style={{ zIndex: 11 }} variant={alertState.variant} onClose={() => setAlertState({show:false})} dismissible>
+            <Alert.Heading>{alertState.heading}</Alert.Heading>
+            <p>
+             {alertState.para}
+            </p>
+          </Alert> : ''
+        }
+
         {isUserLoggedInState ? <Navbar /> : <span></span>}
         <div className="container">
           <Routes>

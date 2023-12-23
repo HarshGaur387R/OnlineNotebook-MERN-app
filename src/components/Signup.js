@@ -43,7 +43,7 @@ export default function Signup() {
                         <input type="text" id='signup-conformation-password-input' value={confirm_password_input} onChange={(e)=>updateConfirmPasswordInput(e.target.value)} className='signup-inputs' />
                     </div>
 
-                    <button className='signup-submit-button' typeof='submit'>Login</button>
+                    <button className='signup-submit-button' typeof='submit'>SignUp</button>
 
                     <div className='style-link Already have an account'>
                         <Link to='/' >Already have an account</Link>

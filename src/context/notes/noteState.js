@@ -3,10 +3,12 @@ import { useState } from "react";
 import config from './../../configs/config';
 import { useContext } from "react";
 import UserContext from "../user/userContext";
+import AlertContext from "../alert/alertContext";
 
 const NoteState = (props) => {
 
     const { setIsUserLoggedInState } = useContext(UserContext);
+    const { setAlertState } = useContext(AlertContext);
 
     const s = {
         notes: []
@@ -19,7 +21,7 @@ const NoteState = (props) => {
         const tokenInStorage = localStorage.getItem('token');
 
         if (!tokenInStorage) {
-            alert('Please Login again');
+            setAlertState({ show: true, heading: 'Error Occurred!', para: 'Please login again', variant: 'danger' })
             setIsUserLoggedInState(false);
             return;
         }
@@ -39,7 +41,7 @@ const NoteState = (props) => {
 
             if (!responseDATA.success) {
                 console.error('failed to add data', responseDATA.error);
-                alert('failed to add data');
+                setAlertState({ show: true, heading: 'Error Occurred!', para: 'Failed to add data', variant: 'danger' })
                 return;
             }
 
@@ -47,12 +49,12 @@ const NoteState = (props) => {
                 notes: [...prevState.notes, responseDATA.note]
             }));
 
-            alert('Note added successfully');
+            setAlertState({ show: true, heading: 'Success!', para: 'Note added successfully', variant: 'success' })
 
             return;
         } catch (error) {
             console.error('unknown error: failed to add data', error);
-            alert('failed to add data');
+            setAlertState({ show: true, heading: 'Error Occurred!', para: 'UnknownError: Failed to add data', variant: 'danger' })
             return;
         }
     }
@@ -63,7 +65,7 @@ const NoteState = (props) => {
         const tokenInStorage = localStorage.getItem('token');
 
         if (!tokenInStorage) {
-            alert('Please Login again');
+            setAlertState({ show: true, heading: 'Error Occurred!', para: 'Please login again', variant: 'danger' })
             setIsUserLoggedInState(false);
             return;
         }
@@ -81,7 +83,7 @@ const NoteState = (props) => {
             const noteIndex = notesState.notes.findIndex((v, i) => v._id === noteId);
 
             if (noteIndex === -1) {
-                alert('Note note found!');
+                setAlertState({ show: true, heading: 'Error Occurred!', para: 'Note note found.', variant: 'danger' })
                 return;
             }
 
@@ -90,20 +92,19 @@ const NoteState = (props) => {
 
             if (!responseDATA.success) {
                 console.error('failed to update note', responseDATA.error);
-                alert('failed to update note');
+                setAlertState({ show: true, heading: 'Error Occurred!', para: 'Failed to update note.', variant: 'danger' })
                 return;
             }
 
             const newNotes = [...notesState.notes];
             newNotes[noteIndex] = responseDATA.note;
             setState({ notes: newNotes });
-
-            alert('Note updated successfully');
+            setAlertState({ show: true, heading: 'Success!', para: 'Note updated successfully.', variant: 'success' })
             return;
 
         } catch (error) {
             console.error('unknown error: failed to update note', error);
-            alert('failed to update note');
+            setAlertState({ show: true, heading: 'Error Occurred!', para: 'Failed to update note.', variant: 'success' })
             return;
         }
     }
@@ -114,7 +115,7 @@ const NoteState = (props) => {
         const tokenInStorage = localStorage.getItem('token');
 
         if (!tokenInStorage) {
-            alert('Please Login again');
+            setAlertState({ show: true, heading: 'Error Occurred!', para: 'Please login again', variant: 'danger' })
             setIsUserLoggedInState(false);
             return;
         }
@@ -134,22 +135,21 @@ const NoteState = (props) => {
 
             if (!responseDATA.success) {
                 console.error('failed to delete note', responseDATA.error);
-                alert('failed to delete note');
+                setAlertState({ show: true, heading: 'Error Occurred!', para: 'Failed to delete note', variant: 'danger' })
                 return;
             }
 
             const newNotes = notesState.notes.filter((obj) => obj._id !== noteId);
             setState({ notes: newNotes });
 
-            alert(responseDATA.msg);
+            setAlertState({ show: true, heading: 'Success!', para: 'Note deleted successfully.', variant: 'success' })
             return;
 
         } catch (error) {
+            setAlertState({ show: true, heading: 'Error Occurred!', para: 'Unknown error: Failed to delete note', variant: 'danger' })
             console.error('unknown error: failed to delete note', error);
-            alert('failed to delete note');
             return;
         }
-
     }
 
     const fetchNotes = async (value) => {
@@ -157,7 +157,7 @@ const NoteState = (props) => {
         const tokenInStorage = localStorage.getItem('token');
 
         if (!tokenInStorage) {
-            alert('Please Login again');
+            setAlertState({ show: true, heading: 'Error Occurred!', para: 'Please login again', variant: 'danger' })
             setIsUserLoggedInState(false);
             return;
         }
@@ -168,12 +168,12 @@ const NoteState = (props) => {
         }
 
         try {
-            const responseJSON = await fetch(`${config.HOST_URL}/api/v1/notes/fetch-notes?search=${value?value:''}`, requestOptions);
+            const responseJSON = await fetch(`${config.HOST_URL}/api/v1/notes/fetch-notes?search=${value ? value : ''}`, requestOptions);
             const responseDATA = await responseJSON.json();
 
             if (!responseDATA.success) {
                 console.error('failed to fetch notes', responseDATA.error);
-                alert('failed to fetch notes');
+                setAlertState({ show: true, heading: 'Error Occurred!', para: 'Failed to fetch notes', variant: 'danger' })
                 return;
             }
 
@@ -181,8 +181,7 @@ const NoteState = (props) => {
             return;
 
         } catch (error) {
-            console.error('unknown error: failed to fetch notes', error);
-            alert('failed to fetch notes');
+            setAlertState({ show: true, heading: 'Error Occurred!', para: 'Unknown error: Failed to fetch notes', variant: 'danger' })
             return;
         }
     }

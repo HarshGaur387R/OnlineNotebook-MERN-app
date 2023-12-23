@@ -1,12 +1,14 @@
 import UserContext from "./userContext";
 import config from "../../configs/config";
 import { useState } from "react";
+import AlertContext from "../alert/alertContext";
+import { useContext } from "react";
 
 const UserState = (props) => {
 
     const [isUserLoggedInState, setIsUserLoggedInState] = useState(false);
     const [userData, updateUserData] = useState({});
-
+    const { setAlertState } = useContext(AlertContext);
 
     const isUserLoggedIn = async () => {
 
@@ -47,7 +49,7 @@ const UserState = (props) => {
             const responseDATA = await responseJSON.json();
 
             if (!responseDATA.success) {
-                alert('failed to login');
+                setAlertState({ show: true, heading: 'Error Occurred!', para: 'Failed to login', variant: 'danger' })
                 console.error('failed to login');
                 return;
             }
@@ -56,7 +58,7 @@ const UserState = (props) => {
             return
 
         } catch (error) {
-            alert('failed to login');
+            setAlertState({ show: true, heading: 'Error Occurred!', para: 'Failed to login', variant: 'danger' })
             console.error(error);
             return;
         }
@@ -76,7 +78,7 @@ const UserState = (props) => {
             const responseDATA = await responseJSON.json();
 
             if (!responseDATA.success) {
-                alert('failed to signup');
+                setAlertState({ show: true, heading: 'Error Occurred!', para: 'Failed to signup', variant: 'danger' })
                 console.error('failed to signup');
                 return;
             }
@@ -85,7 +87,7 @@ const UserState = (props) => {
             return;
 
         } catch (error) {
-            alert('failed to signup');
+            setAlertState({ show: true, heading: 'Error Occurred!', para: 'Failed to signup', variant: 'danger' })
             console.error(error);
             return;
         }
@@ -97,14 +99,14 @@ const UserState = (props) => {
         const tokenInStorage = localStorage.getItem('token');
 
         if (!tokenInStorage) {
-            alert('Please Login again');
+            setAlertState({ show: true, heading: 'Error Occurred!', para: 'Please Login again', variant: 'danger' })
             setIsUserLoggedInState(false);
             return;
         }
 
         const requestOptions = {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' ,'Authorization': 'Bearer ' + tokenInStorage},
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + tokenInStorage },
             body: JSON.stringify(payload)
         }
 
@@ -113,18 +115,18 @@ const UserState = (props) => {
             const responseDATA = await responseJSON.json();
 
             if (!responseDATA.success) {
-                alert('failed to update');
+                setAlertState({ show: true, heading: 'Error Occurred!', para: 'failed to update', variant: 'danger' })
                 console.error('failed to update : response success is false');
                 return;
             }
 
             updateUserData(responseDATA.data);
             setIsUserLoggedInState(true);
-            alert('User updated successfully!');
+            setAlertState({ show: true, heading: 'Success!', para: 'User updated successfully', variant: 'success' })
             return;
 
         } catch (error) {
-            alert('error caught: failed to update');
+            setAlertState({ show: true, heading: 'Error Occurred!', para: 'unknown error: failed to update', variant: 'danger' })
             console.error(error);
             return;
         }
