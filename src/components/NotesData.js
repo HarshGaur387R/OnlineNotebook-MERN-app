@@ -98,8 +98,7 @@ export default function NotesData() {
     <div className="notes-data">
       <div className="chats d-flex flex-column justify-content-center align-items-center">
 
-        <div className='top-chart d-flex flex-row justify-content-center align-items-center'>
-
+        <div className='top-chart d-flex justify-content-center align-items-center flex-row'>
           <div className="barChart">
             {!notes.length ? '' :
               <ThemeProvider theme={darkTheme}>
@@ -125,7 +124,7 @@ export default function NotesData() {
             }
           </div>
 
-          <div className="pieChart">
+          <div className="pieChart ">
             {!notes.length ? '' :
               <ThemeProvider theme={darkTheme}>
                 <PieChart
@@ -139,8 +138,8 @@ export default function NotesData() {
         </div>
 
 
-        <div className="bottomChart">
-          <div className="lineChart">
+        <div className="bottomChart d-flex justify-content-center align-items-center">
+          <div className="lineChart ">
             <ThemeProvider theme={darkTheme}>
               <LineChart
                 xAxis={[{ data: lineChart.xAxis }]}

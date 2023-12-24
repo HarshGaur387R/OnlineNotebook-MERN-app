@@ -9,7 +9,7 @@ export default function Profile() {
   const [showMyAccountState, updateMyAccountState] = useState(true);
 
   return (
-    <div className='d-flex justify-content-center align-items-center vh-100 gap-5'>
+    <div className='row justify-content-center align-items-center vh-100 gap-3'>
       <ProfileNav updateMyAccountState={updateMyAccountState} showMyAccountState={showMyAccountState}></ProfileNav>
 
       {showMyAccountState ? <MyAccount ></MyAccount> : <NotesData></NotesData>}

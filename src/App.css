@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&family=K2D:wght@100;200;300;400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800&display=swap');
 
+:root{
+  --notes-data-pad:30px;
+}
 
 body {
   background-color: #1A1A1A;
@@ -457,10 +460,17 @@ input.form-control:focus {
 
 .profile-nav {
   color: black;
-  background-color: red;
-  width: 300px;
+  max-width: 300px;
   height: 600px;
   background-color: #161616;
+}
+
+.profile-options {
+  width: 170px;
+}
+
+.profile-nav-btn-container #Logout-btn {
+  width: 100%;
 }
 
 .profile-nav-btn-container #Logout-btn:hover {
@@ -501,9 +511,94 @@ input.form-control:focus {
   background-color: transparent;
 }
 
+
+@media screen and (max-width: 1000px) {
+  .profile-nav {
+    max-width: 100px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    min-width: auto;
+    max-width: none;
+
+  }
+
+  .profile-nav-btn-container {
+    border: none;
+    border-radius: 0%;
+  }
+
+  .profile-nav-active {
+    border-radius: 0% !important;
+    box-shadow: none !important;
+  }
+
+  .profile-nav-btn-container button span {
+    display: none;
+  }
+
+  .profile-nav-btn-container i {
+    padding-right: 0px;
+    font-size: larger;
+    color: #FFF500;
+  }
+
+  .profile-nav-active {
+    border-radius: 0;
+    border-bottom: 1px solid white;
+  }
+
+  .profile-options {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width:900px) {
+  .my-account {
+    min-width: 600px;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .profile-nav {
+    min-width: 600px;
+    margin-top: 10px;
+    height: 0;
+  }
+
+  .profile-options {
+    gap: 10px;
+    width: 70%;
+    flex-direction: row !important;
+  }
+
+  .log-out-btn-container {
+    width: 30%;
+  }
+
+  .profile-nav {
+    flex-direction: row !important;
+  }
+}
+
+@media screen and (max-width: 620px) {
+
+  .profile-nav {
+    /* min-width: none !important; */
+    min-width: 300px !important;
+    /* width: 100% !important; */
+  }
+
+  .my-account {
+    min-width: 300px;
+    min-width: none;
+    width: 100%;
+  }
+}
+
+/* My account related content */
 .my-account {
   background-color: #161616;
-  width: 800px;
+  max-width: 800px;
   height: 600px;
   padding: 30px;
   text-align: start;
@@ -555,9 +650,133 @@ input.form-control:focus {
   background-color: #161616;
   width: 800px;
   height: 600px;
+  border-radius: 30px;
 }
 
-/* Responsive Control */
+
+
+@media screen and (max-width: 1200px) {
+
+  .notes-data{
+    width: 600px;
+  }
+
+  .top-chart{
+    width: 600px;
+  }
+
+  .barChart {
+    width: 300px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .barChart svg{
+    width: 300px !important;
+    height: 300px !important;
+  }
+
+  .pieChart{
+    width: 300px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+  .pieChart svg{
+    width: 300px !important;
+    height: 300px !important;
+  }
+
+  .lineChart{
+    width: 600px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lineChart svg{
+    width: 600px !important;
+    height: 300px !important;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .notes-data{
+    
+    height: fit-content !important;
+    /* padding: 0%; */
+  }
+  .top-chart{
+    width: 400px;
+    flex-direction: column !important;
+  }
+
+  .barChart{
+    width: 400px !important;
+  }
+
+  .barChart svg{
+    width: 400px !important;
+  }
+
+  .pieChart{
+    width: 400px !important;
+  }
+  
+  .pieChart svg{
+    width: 400px !important;
+  }
+
+  .lineChart{
+    width: 400px !important;
+  }
+
+  .lineChart svg{
+    width: 400px !important;
+  }
+}
+
+
+@media screen and (max-width: 620px) {
+  .notes-data{
+    
+    height: fit-content !important;
+    /* padding: 0%; */
+  }
+  .top-chart{
+    width: 300px;
+    flex-direction: column !important;
+  }
+
+  .barChart{
+    width: 300px !important;
+  }
+
+  .barChart svg{
+    width: 300px !important;
+  }
+
+  .pieChart{
+    width: 300px !important;
+  }
+  
+  .pieChart svg{
+    width: 300px !important;
+  }
+
+  .lineChart{
+    width: 300px !important;
+  }
+
+  .lineChart svg{
+    width: 300px !important;
+  }
+}
+
 
 @media screen and (max-width: 1000px) {
 
@@ -565,6 +784,18 @@ input.form-control:focus {
     width: 700px;
   }
 
+}
+
+@media screen and (max-width: 870px) {
+  .ac-inputs-container {
+    width: 700px;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .ac-inputs-container {
+    width: 500px;
+  }
 }
 
 @media screen and (max-width: 700px) {
@@ -580,11 +811,66 @@ input.form-control:focus {
     width: 400px;
     height: 100%;
   }
+}
+
+@media screen and (max-width: 570px) {
+  .ac-inputs-container {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .ac-inputs-container {
+    width: 300px;
+  }
+
+  .add-component-btn {
+    text-align: center !important;
+  }
+
+  .add-component-btn button {
+    margin: 8px !important;
+
+  }
+}
+
+
+@media screen and (max-width: 370px) {
+  .ac-inputs-container {
+    width: 300px;
+
+  }
+
+  .AddComponent {
+    padding: 10px;
+  }
+
+  .add-component-btn {
+    text-align: center !important;
+  }
+
+  .add-component-btn button {
+    margin: 8px !important;
+
+  }
+}
+
+@media screen and (max-width:330px) {
+  .AddComponent {
+    width: 100%;
+    padding: 0px;
+  }
+
+  .ac-inputs-container {
+    width: 100% !important;
+  }
+
 
 }
 
+
 @media screen and (max-width: 400px) {
-  .about-heading{
+  .about-heading {
     padding-top: 10px;
   }
 
@@ -593,9 +879,8 @@ input.form-control:focus {
     height: 100%;
   }
 
-  .about-desc{
+  .about-desc {
     padding-top: 5px !important;
-
   }
 
 }
