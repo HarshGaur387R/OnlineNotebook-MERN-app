@@ -30,17 +30,17 @@ export default function Signup() {
 
                     <div className='input-container d-flex flex-column justify-content-start align-items-start'>
                         <label className='signup-input-label' htmlFor="signup-name-input">Email</label>
-                        <input type="text" id='signup-name-input' value={email_input} onChange={(e)=>updateEmailInput(e.target.value)} className='signup-inputs' />
+                        <input type="email" id='signup-name-input' value={email_input} onChange={(e)=>updateEmailInput(e.target.value)} minLength={5} className='signup-inputs' required={true}/>
                     </div>
 
                     <div className='input-container d-flex flex-column justify-content-start align-items-start'>
                         <label className='signup-input-label' htmlFor="password-input">Password</label>
-                        <input type="text" id='signup-password-input' value={password_input} onChange={(e)=>updatePasswordInput(e.target.value)} className='signup-inputs' />
+                        <input type="password" id='signup-password-input' value={password_input} onChange={(e)=>updatePasswordInput(e.target.value)} minLength={12} className='signup-inputs' required={true} />
                     </div>
 
                     <div className='input-container d-flex flex-column justify-content-start align-items-start'>
                         <label className='signup-input-label' htmlFor="password-input">Confirm Password</label>
-                        <input type="text" id='signup-conformation-password-input' value={confirm_password_input} onChange={(e)=>updateConfirmPasswordInput(e.target.value)} className='signup-inputs' />
+                        <input type="password" id='signup-conformation-password-input' value={confirm_password_input} minLength={12} onChange={(e)=>updateConfirmPasswordInput(e.target.value)} className='signup-inputs' required={true} />
                     </div>
 
                     <button className='signup-submit-button' typeof='submit'>SignUp</button>

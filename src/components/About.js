@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function About() {
 
@@ -12,7 +13,7 @@ export default function About() {
           </div>
 
           <div className="about-desc text-start row p-4">
-            By understanding, imagining and expressing change, we create simpler, lighter, more desirable ideas for the future. We design for life. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            Welcome to the OnlineNotebook MERN (MongoDB, Express.js, React, Node.js) web application! This web app allows users to create an account, log in, and log out. Additionally, it provides a dynamic platform for users to manage and view their notes in real-time.
           </div>
 
           <div className="row justify-content-center align-items-center about-card-container">
@@ -62,6 +63,8 @@ export default function About() {
 
           </div>
         </div>
+        <br />
+        <Link to={'https://github.com/HarshGaur387R'}>Created By.</Link>
       </div>
 
     </>

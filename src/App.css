@@ -135,14 +135,14 @@ input.form-control:focus {
 
 .login-form {
   border-bottom: 1px solid #FFF500;
-  background: linear-gradient(217deg, #C0C0C0 0%, #494839 100%);
-
+  background-color: #1E1E1E;
   width: 550px;
   height: 632px;
+  gap: 20px !important;
 }
 
 .login-header {
-  color: #000;
+  color: #FFF500;
   text-align: center;
   font-family: 'kanit';
   font-size: 36px;
@@ -151,21 +151,22 @@ input.form-control:focus {
 
 .input-container {
   width: 400px;
-}
+  gap: 10px;
 
+}
 
 .login-inputs {
   font-size: large;
   width: 100%;
   color: white;
   background-color: transparent;
-  border: 1px solid black;
+  border: 1px solid #FFF500;
   padding: 3px;
 }
 
 
 .input-label {
-  color: #000;
+  color: white;
   text-align: center;
   font-family: 'kanit';
   font-size: 20px;
@@ -175,11 +176,11 @@ input.form-control:focus {
 }
 
 .login-submit-button {
-  margin-top: 10px;
+  margin-top: 25px;
   padding: 5px;
   border-radius: 40px;
   border: 1px solid black;
-  background: transparent;
+  background: #FFF500;
   width: 400px;
   color: black;
   font-family: 'kanit';
@@ -189,13 +190,13 @@ input.form-control:focus {
 }
 
 .login-submit-button:hover {
-  border: 1px solid black;
-  color: white;
-  background-color: black;
+  border: 1px solid #FFF500;
+  color: black;
+  background-color: #fff943;
 }
 
 .style-link a {
-  color: #FFF;
+  color: #FFF500;
   text-align: center;
   font-family: 'kanit';
   font-size: 13px;
@@ -235,7 +236,7 @@ input.form-control:focus {
 }
 
 .signup-input-label {
-  color: #FFF500;
+  color: white;
   text-align: center;
   font-family: 'kanit';
   font-size: 20px;
@@ -248,10 +249,10 @@ input.form-control:focus {
   margin-top: 10px;
   padding: 5px;
   border-radius: 40px;
-  border: 1px solid #FFF500;
-  background: transparent;
+  border: 1px solid black;
+  background: #FFF500;
   width: 400px;
-  color: #FFF500;
+  color: black;
   font-family: 'kanit';
   font-size: 24px;
   font-weight: 600;
@@ -261,7 +262,7 @@ input.form-control:focus {
 .signup-submit-button:hover {
   border: 1px solid #FFF500;
   color: black;
-  background-color: #FFF500;
+  background-color: #fff943;
 }
 
 /* Add Button related */
