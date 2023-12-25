@@ -13,7 +13,7 @@ export default function Signup() {
     const [confirm_password_input, updateConfirmPasswordInput] = useState('');
 
     return (
-        <div className='container auth-container d-flex align-items-center justify-content-center'>
+        <div className='auth-container d-flex align-items-center justify-content-center'>
             <div className="signup-container d-flex flex-row align-items-center justify-content-center">
 
                 <div className='wallpaper'>

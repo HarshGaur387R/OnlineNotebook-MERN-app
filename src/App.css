@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&family=K2D:wght@100;200;300;400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800&display=swap');
 
-:root{
-  --notes-data-pad:30px;
+:root {
+  --notes-data-pad: 30px;
 }
 
 body {
@@ -118,7 +118,6 @@ input.form-control:focus {
 
 .auth-container {
   height: 100vh;
-  width: 100vw;
 }
 
 .wallpaper {
@@ -654,14 +653,13 @@ input.form-control:focus {
 }
 
 
-
 @media screen and (max-width: 1200px) {
 
-  .notes-data{
+  .notes-data {
     width: 600px;
   }
 
-  .top-chart{
+  .top-chart {
     width: 600px;
   }
 
@@ -673,106 +671,108 @@ input.form-control:focus {
 
   }
 
-  .barChart svg{
+  .barChart svg {
     width: 300px !important;
     height: 300px !important;
   }
 
-  .pieChart{
+  .pieChart {
     width: 300px !important;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
   }
 
-  .pieChart svg{
+  .pieChart svg {
     width: 300px !important;
     height: 300px !important;
   }
 
-  .lineChart{
+  .lineChart {
     width: 600px !important;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  .lineChart svg{
+  .lineChart svg {
     width: 600px !important;
     height: 300px !important;
   }
 }
 
 @media screen and (max-width: 770px) {
-  .notes-data{
-    
+  .notes-data {
+
     height: fit-content !important;
     /* padding: 0%; */
   }
-  .top-chart{
+
+  .top-chart {
     width: 400px;
     flex-direction: column !important;
   }
 
-  .barChart{
+  .barChart {
     width: 400px !important;
   }
 
-  .barChart svg{
+  .barChart svg {
     width: 400px !important;
   }
 
-  .pieChart{
-    width: 400px !important;
-  }
-  
-  .pieChart svg{
+  .pieChart {
     width: 400px !important;
   }
 
-  .lineChart{
+  .pieChart svg {
     width: 400px !important;
   }
 
-  .lineChart svg{
+  .lineChart {
+    width: 400px !important;
+  }
+
+  .lineChart svg {
     width: 400px !important;
   }
 }
 
 
 @media screen and (max-width: 620px) {
-  .notes-data{
-    
+  .notes-data {
+
     height: fit-content !important;
     /* padding: 0%; */
   }
-  .top-chart{
+
+  .top-chart {
     width: 300px;
     flex-direction: column !important;
   }
 
-  .barChart{
+  .barChart {
     width: 300px !important;
   }
 
-  .barChart svg{
+  .barChart svg {
     width: 300px !important;
   }
 
-  .pieChart{
-    width: 300px !important;
-  }
-  
-  .pieChart svg{
+  .pieChart {
     width: 300px !important;
   }
 
-  .lineChart{
+  .pieChart svg {
     width: 300px !important;
   }
 
-  .lineChart svg{
+  .lineChart {
+    width: 300px !important;
+  }
+
+  .lineChart svg {
     width: 300px !important;
   }
 }
@@ -864,8 +864,6 @@ input.form-control:focus {
   .ac-inputs-container {
     width: 100% !important;
   }
-
-
 }
 
 
@@ -882,5 +880,86 @@ input.form-control:focus {
   .about-desc {
     padding-top: 5px !important;
   }
+}
 
+
+/* Responsive login */
+
+@media screen and (max-width:1100px) {
+  .wallpaper{
+    width: 400px;
+  }
+
+  .login-form{
+    width:  400px;
+    height: 458px;
+  }
+
+  .input-container{
+    width: 350px;
+  }
+
+  .login-submit-button{
+    width: 350px;
+  }
+
+  .signup-submit-button{
+    width: 350px;
+  }
+
+  .signup-form{
+    width: 400px;
+    height: 458px;
+  }
+}
+
+@media screen and (max-width:800px) {
+  .wallpaper{
+    display: none;
+  }
+
+  .login-container{
+    width: 100%;
+    height: 100%;
+  }
+
+  .signup-container{
+    width: 100%;
+    height: 100%;
+  }
+
+  .login-form{
+    width: 100%;
+    height: 100%;
+  }
+
+  .signup-form{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+
+  .login-form{
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .signup-form{
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  
+  .input-container{
+    width: 100% !important;
+  }
+
+  .login-submit-button{
+    width: 100% !important;
+  }
+
+  .signup-submit-button{
+    width: 100% !important;
+  }
 }

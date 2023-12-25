@@ -12,7 +12,7 @@ export default function Login(props) {
   const [password_input, updatePasswordUpdate] = useState('');
 
   return (
-    <div className='container auth-container d-flex align-items-center justify-content-center'>
+    <div className='auth-container d-flex align-items-center justify-content-center'>
 
       <div className="login-container d-flex flex-row align-items-center justify-content-center">
 
